@@ -19,36 +19,36 @@ export default class ProfitGroup extends cc.Component {
     profitOnNextTileLabel: cc.Label = null;
 
 
-    Init(){
-        this.UpdateProfit(GameManager.Instance.currentBetLevel, GameManager.Instance.profitOnNextTile);
-        this.SetProfitState(false);
-    }
+    // Init(){
+    //     this.UpdateProfit(GameManager.Instance.currentBetLevel, GameManager.Instance.profitOnNextTile);
+    //     this.SetProfitState(false);
+    // }
 
 
-    SetTotalProfit(amount : number){
-        this.totalProfitLabel.string = "Total profit: " + amount.toFixed() + " VND";
-    }
+    // SetTotalProfit(amount : number){
+    //     this.totalProfitLabel.string = "Total profit: " + amount.toFixed() + " VND";
+    // }
 
-    SetProfitOnNextTile(amount : number, cost : number){
-        this.profitOnNextTileLabel.string = "Profit on next tile: " + amount.toFixed() + " VND" + " (x" + cost + ")";
-    }
+    // SetProfitOnNextTile(amount : number, cost : number){
+    //     this.profitOnNextTileLabel.string = "Profit on next tile: " + amount.toFixed() + " VND" + " (x" + cost + ")";
+    // }
 
-    SetTotalProfitState(state : boolean){
-        this.totalProfitLabel.node.active = state;
-    }
-    SetProfitOnNextTileState(state : boolean){
-        this.profitOnNextTileLabel.node.active = state;
-    }
+    // SetTotalProfitState(state : boolean){
+    //     this.totalProfitLabel.node.active = state;
+    // }
+    // SetProfitOnNextTileState(state : boolean){
+    //     this.profitOnNextTileLabel.node.active = state;
+    // }
 
-    SetProfitState(state : boolean){
-        this.SetTotalProfitState(state);
-        this.SetProfitOnNextTileState(state);
-    }
-    UpdateProfit(totalProfit : number, profitOnNextTile : number){
-        this.SetTotalProfit(totalProfit);
-        this.SetProfitOnNextTile(profitOnNextTile, GameManager.Instance.CostNextTile());
+    // SetProfitState(state : boolean){
+    //     this.SetTotalProfitState(state);
+    //     this.SetProfitOnNextTileState(state);
+    // }
+    // UpdateProfit(totalProfit : number, profitOnNextTile : number){
+    //     this.SetTotalProfit(totalProfit);
+    //     this.SetProfitOnNextTile(profitOnNextTile, GameManager.Instance.CostNextTile());
 
-        GameManager.Instance.totalProfit = Math.round(totalProfit);
-        GameManager.Instance.profitOnNextTile = Math.round(profitOnNextTile);
-    }
+    //     GameManager.Instance.totalProfit = Math.round(totalProfit);
+    //     GameManager.Instance.profitOnNextTile = Math.round(profitOnNextTile);
+    // }
 }

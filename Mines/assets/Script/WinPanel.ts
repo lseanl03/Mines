@@ -16,7 +16,7 @@ export default class WinPanel extends cc.Component {
     @property(cc.Label)
     totalProfitLabel: cc.Label = null;
 
-    hideTime : number = 3;
+    hideTime : number = 0.5;
 
     protected onEnable(): void {
         this.Anim();

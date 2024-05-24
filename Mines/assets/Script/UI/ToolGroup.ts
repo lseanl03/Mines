@@ -6,7 +6,6 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import GameManager from "../Manager/GameManager";
-import BetButton from "./BetButton";
 import CenterGroup from "./CenterGroup";
 import PickRandomButton from "./PickRandomButton";
 
@@ -46,9 +45,6 @@ export default class ToolGroup extends cc.Component {
     @property(PickRandomButton)
     pickRandomButton : PickRandomButton = null;
 
-    @property(BetButton)
-    betButton : BetButton = null;
-
     Init(){
         this.mineSlider.progress = 0;
         this.SetCurrentMine(1);
@@ -69,12 +65,9 @@ export default class ToolGroup extends cc.Component {
         CenterGroup.instance.SetPrimogem(24 - currentMine);
         CenterGroup.instance.SetMine(currentMine);
 
-        GameManager.Instance.SetCurrentMineAmount(currentMine);
+       /// GameManager.Instance.SetCurrentMineAmount(currentMine);
     }
     SetMaxMine(maxMine : number){
         this.maxMineLabel.string = maxMine.toFixed(0);
-    }
-    BetButtonLabel(value : string){
-        this.betButton.label.string = value;
     }
 }

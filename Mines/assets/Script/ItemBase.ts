@@ -11,13 +11,15 @@ const {ccclass, property} = cc._decorator;
 export default class ItemBase extends cc.Component {
 
 
-    isOpened : boolean = false;
+    button : cc.Button = null;
 
     protected onLoad(): void {
         this.node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
         this.node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
         this.node.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
         this.node.on(cc.Node.EventType.MOUSE_UP, this.onMouseUp, this);
+
+        this.button = this.node.getComponent(cc.Button);
 
     }
     protected Active(){}
@@ -36,13 +38,16 @@ export default class ItemBase extends cc.Component {
     }
     protected onMouseUp(event: cc.Event.EventMouse): void {
         this.EffectActive(1.05);
-        this.Active();
     }
 
     
     EffectActive(value){
-        cc.tween(this.node)
-        .to(0.1, {scale: value})
-        .start();
+        if(this.button != null){
+            if(this.button.interactable){
+                cc.tween(this.node)
+                .to(0.1, {scale: value})
+                .start();
+            }
+        }
     }
 }
