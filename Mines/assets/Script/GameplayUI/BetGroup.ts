@@ -136,6 +136,7 @@ export default class BetGroup extends cc.Component {
         for(var i = 0; i < itemGroup.childrenCount; i++){
             var item = itemGroup.children[i];
             var itemComponent = item.getComponent(Item);
+            itemComponent.anim.node.active = true;
             itemComponent.SetItemSprite(isShow);
         }
     }

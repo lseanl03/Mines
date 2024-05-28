@@ -8,6 +8,7 @@
 import ButtonBase from "../ButtonBase";
 import GameManager from "../Manager/GameManager";
 import GameplayUIManager from "../Manager/GameplayUIManager";
+import PlayGroup from "./PlayGroup";
 
 
 const {ccclass, property} = cc._decorator;
@@ -48,7 +49,14 @@ export default class Item extends ButtonBase {
     }
     onAnimationComplete(trackEntry, loopCount) {
         if (this.itemType == ItemSpriteType.Mine && this.isMineClicked) {
-            this.anim.setAnimation(0, '5', false);
+
+            this.anim.node.active = false;
+
+            PlayGroup.Instance.anim.node.position = this.node.position;
+            PlayGroup.Instance.anim.setAnimation(0, '5', false);
+        }
+        else if(this.itemType == ItemSpriteType.Diamond){
+            this.anim.setAnimation(0, '8', true);
         }
         this.isMineClicked = false;          
     }
@@ -92,8 +100,8 @@ export default class Item extends ButtonBase {
 
     PlayAnim(isMine : boolean, canLoop : boolean){
 
-        if(isMine) this.anim.setAnimation(0, '1', canLoop);
-        else this.anim.setAnimation(0, '2', canLoop);
+        if(isMine) this.anim.setAnimation(0, '6', canLoop);
+        else this.anim.setAnimation(0, '7', canLoop);
     }
 
     StopAnim(){

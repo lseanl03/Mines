@@ -14,6 +14,9 @@ export default class PlayGroup extends cc.Component {
     @property(cc.Node)
     itemGroup : cc.Node = null;
 
+    @property(sp.Skeleton)
+    anim : sp.Skeleton = null;
+
     onLoad(){
         PlayGroup.Instance = this;
     }
