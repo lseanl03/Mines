@@ -8,17 +8,28 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class PlayGroup extends cc.Component {
+export default class Mines_PlayGroup extends cc.Component {
 
-    static Instance : PlayGroup = null;
+    static Instance : Mines_PlayGroup = null;
     @property(cc.Node)
-    itemGroup : cc.Node = null;
+    private itemGroup : cc.Node = null;
 
     @property(sp.Skeleton)
-    anim : sp.Skeleton = null;
+    private animBomb : sp.Skeleton = null;
 
     onLoad(){
-        PlayGroup.Instance = this;
+        Mines_PlayGroup.Instance = this;
+    }
+
+
+    //Get Set
+
+    public ItemGroup(){
+        return this.itemGroup;
+    }
+
+    public AnimBomb(){
+        return this.animBomb;
     }
 
 }

@@ -6,7 +6,6 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import ItemBase from "./ItemBase";
-import GameManager from "./Manager/GameManager";
 
 const {ccclass, property} = cc._decorator;
 

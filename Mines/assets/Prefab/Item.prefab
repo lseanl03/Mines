@@ -230,13 +230,19 @@
     "_id": ""
   },
   {
-    "__type__": "2c65bZ05DZA1LUyYjQ4ldAF",
+    "__type__": "6c2ebH9ohlDkJEZ3kFoKbwW",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
+    "itemHideSprite": {
+      "__uuid__": "3edc36a7-913c-4b44-acbe-3254252536e9"
+    },
+    "itemShowSprite": {
+      "__uuid__": "a3d77adb-3ebb-489e-8497-af8cd5db146d"
+    },
     "_id": ""
   },
   {

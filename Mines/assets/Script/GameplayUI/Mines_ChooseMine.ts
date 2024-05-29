@@ -6,15 +6,14 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import ButtonBase from "../ButtonBase";
-import GameManager from "../Manager/GameManager";
-import GameplayUIManager from "../Manager/GameplayUIManager";
-import BetGroup from "./BetGroup";
+import Mines_GameManager from "../Manager/Mines_GameManager";
+import Mines_BetGroup from "./Mines_BetGroup";
 
 const {ccclass, property} = cc._decorator;
 
 
 @ccclass
-export default class ChooseMine extends ButtonBase {
+export default class Mines_ChooseMine extends ButtonBase {
     
     @property
     mineAmount: number = 0;
@@ -32,13 +31,13 @@ export default class ChooseMine extends ButtonBase {
 
     override EffectActive(value: any): void {
 
-        if(GameManager.Instance.isBetting) return; 
+        if(Mines_GameManager.Instance.IsBetting()) return; 
         super.EffectActive(value);    
     }
 
     OnClick(){
-        GameManager.Instance.SetCurrentMineAmount(this.mineAmount);
-        BetGroup.Instance.SetChooseMineViewLabel(GameManager.Instance.currentMineAmount);
+        Mines_GameManager.Instance.SetCurrentMineAmount(this.mineAmount);
+        Mines_BetGroup.Instance.SetChooseMineViewLabel(Mines_GameManager.Instance.CurrentMineAmount());
     }
 
     protected start(): void {

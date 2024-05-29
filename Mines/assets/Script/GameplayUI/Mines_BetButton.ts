@@ -6,31 +6,34 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import ButtonBase from "../ButtonBase";
-import GameManager from "../Manager/GameManager";
-import BetGroup from "./BetGroup";
+import Mines_BetGroup from "./Mines_BetGroup";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class BetButton extends ButtonBase {
+export default class Mines_BetButton extends ButtonBase {
 
     @property(cc.SpriteFrame)
-    betSpriteFrame: cc.SpriteFrame = null;
+    private betSpriteFrame: cc.SpriteFrame = null;
 
     @property(cc.SpriteFrame)
-    stopSpriteFrame: cc.SpriteFrame = null;
+    private stopSpriteFrame: cc.SpriteFrame = null;
 
-    @property(cc.Sprite)
-    sprite: cc.Sprite = null;
+    private sprite: cc.Sprite = null;
 
-    SetButtonSprite(isBetting: boolean){
+    onLoad(){
+        super.onLoad();
+        this.sprite = this.node.getComponent(cc.Sprite);
+    }
+
+    public SetButtonSprite(isBetting: boolean){
         if(isBetting) {
             this.sprite.spriteFrame = this.stopSpriteFrame;
-            BetGroup.Instance.SetItemSprite(true);
+            Mines_BetGroup.Instance.SetItemSprite(true);
         }
         else{
             this.sprite.spriteFrame = this.betSpriteFrame;
-            BetGroup.Instance.SetItemSprite(false);
+            Mines_BetGroup.Instance.SetItemSprite(false);
         }
     }
 }

@@ -8,15 +8,15 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class WinPanel extends cc.Component {
+export default class Mines_WinPanel extends cc.Component {
 
     @property(cc.Label)
-    costLabel: cc.Label = null;
+    private costLabel: cc.Label = null;
 
     @property(cc.Label)
-    totalProfitLabel: cc.Label = null;
+    private totalProfitLabel: cc.Label = null;
 
-    hideTime : number = 0.5;
+    private hideTime : number = 0.5;
 
     protected onEnable(): void {
         this.Anim();
@@ -32,5 +32,13 @@ export default class WinPanel extends cc.Component {
             this.node.active = false;
         })
         .start();
+    }
+
+    SetCostLabel(cost : number){
+        this.costLabel.string = "Cost: x" + cost;
+    }
+
+    SetTotalProfitLabel(totalProfit : number){
+        this.totalProfitLabel.string = "Total Profit: " + Math.round(totalProfit) + " VND";
     }
 }

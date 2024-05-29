@@ -5,18 +5,18 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
-import GameManager from "./Manager/GameManager";
+import Mines_GameManager from "./Manager/Mines_GameManager";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class ProfitGroup extends cc.Component {
+export default class Mines_ProfitGroup extends cc.Component {
     
     @property(cc.Label)
-    totalProfitLabel: cc.Label = null;
+    private totalProfitLabel: cc.Label = null;
 
     @property(cc.Label)
-    profitOnNextTileLabel: cc.Label = null;
+    private profitOnNextTileLabel: cc.Label = null;
 
 
     // Init(){

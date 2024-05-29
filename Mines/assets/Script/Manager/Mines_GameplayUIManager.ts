@@ -5,26 +5,24 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class HistoryGroup extends cc.Component {
-    
+export default class Mines_GameplayUIManager extends cc.Component {
 
-    public static Instance : HistoryGroup = null;
+    public static Instance : Mines_GameplayUIManager = null;
 
-
-    @property(cc.Color)
-    loseColor: cc.Color = null;
-
-    @property(cc.Color)
-    winColor: cc.Color = null;
-
-    @property(cc.Node)
-    historyHolder: cc.Node = null;
+    @property(cc.Label)
+    currentMoneyLabel : cc.Label = null;
 
 
-    protected onLoad(): void {
-        HistoryGroup.Instance = this;
+    onLoad(){
+        Mines_GameplayUIManager.Instance = this;
     }
+
+    SetCurrentMoneyLabel(currentMoney : number){
+        this.currentMoneyLabel.string = "Money: " + currentMoney + " VND";
+    }
+
 }

@@ -6,9 +6,8 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import ButtonBase from "../ButtonBase";
-import GameManager from "../Manager/GameManager";
-import GameplayUIManager from "../Manager/GameplayUIManager";
-import BetGroup from "./BetGroup";
+import Mines_GameManager from "../Manager/Mines_GameManager";
+import Mines_BetGroup from "./Mines_BetGroup";
 
 const {ccclass, property} = cc._decorator;
 
@@ -23,23 +22,23 @@ export enum BetLevelType{
 }
 
 @ccclass
-export default class ChooseBet extends ButtonBase {
+export default class Mines_ChooseBet extends ButtonBase {
 
     @property({type:cc.Enum(BetLevelType)})
-    betLevelType: BetLevelType = BetLevelType.None;
+    private betLevelType: BetLevelType = BetLevelType.None;
 
     protected onLoad(): void {
         super.onLoad();
         this.node.on('click', this.OnClick, this);
     }
 
-    OnClick(){
-        if(GameManager.Instance.isBetting) return; 
-        BetGroup.Instance.SetBetLevel(this.betLevelType);
+    private OnClick(){
+        if(Mines_GameManager.Instance.IsBetting()) return; 
+        Mines_BetGroup.Instance.SetBetLevel(this.betLevelType);
     }
     override EffectActive(value: any): void {
 
-        if(GameManager.Instance.isBetting) return; 
+        if(Mines_GameManager.Instance.IsBetting()) return; 
         super.EffectActive(value);    
     }
 }
