@@ -11,6 +11,7 @@ import Mines_PlayGroup from "../GameplayUI/Mines_PlayGroup";
 import ProfitCostData from "../ProfitCostData";
 import Mines_WinPanel from "../Mines_WinPanel";
 import Mines_GameplayUIManager from "./Mines_GameplayUIManager";
+import Mines_DataManager from "./Mines_DataManager";
 
 const {ccclass, property} = cc._decorator;
 
@@ -44,12 +45,14 @@ export default class Mines_GameManager extends cc.Component {
     }
     Init(){
         this.SetCurrentBetLevel(this.minBetLevel);
-        this.SetCurrentMoney(this.initMoney);
     }
 
     //Get Set
 
-    
+    public GetInitMoney(){
+        return this.initMoney;
+    }
+
     private CostNextTile(){
         return this.GetNextCost(this.itemIsOpenedAmount);
     }
@@ -105,7 +108,10 @@ export default class Mines_GameManager extends cc.Component {
 
     public SetCurrentMoney(value: number){
         this.currentMoney += value;
-        Mines_GameplayUIManager.Instance.SetCurrentMoneyLabel(this.currentMoney);
+        
+        Mines_BetGroup.Instance.GetInfoGroup().SetCurrentMoneyLabel(this.currentMoney);
+
+        Mines_DataManager.instance.SetMoneyData(this.currentMoney);
     }
 
 
@@ -137,7 +143,7 @@ export default class Mines_GameManager extends cc.Component {
         if(value < this.minMine || value > this.maxMine || this.isBetting) return;
 
         this.currentMineAmount = value;
-        Mines_BetGroup.Instance.CheckChooseMineGroup(this.currentMineAmount);
+        Mines_BetGroup.Instance.GetChooseMineGroup().CheckChooseMineGroup(this.currentMineAmount);
     }
 
     public SetBettingState(state : boolean){
@@ -156,7 +162,7 @@ export default class Mines_GameManager extends cc.Component {
         if(this.currentBetLevel > this.maxBetLevel) this.currentBetLevel = this.maxBetLevel;
 
         
-        Mines_BetGroup.Instance.SetBetLevelLabel(this.currentBetLevel);
+        Mines_BetGroup.Instance.GetChooseBetGroup().SetBetLevelLabel(this.currentBetLevel);
     }
   
     public SetTotalProfit(value : number){

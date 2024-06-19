@@ -30,15 +30,17 @@ export default class Mines_ChooseBet extends ButtonBase {
     protected onLoad(): void {
         super.onLoad();
         this.node.on('click', this.OnClick, this);
+
     }
 
     private OnClick(){
         if(Mines_GameManager.Instance.IsBetting()) return; 
-        Mines_BetGroup.Instance.SetBetLevel(this.betLevelType);
+        Mines_GameManager.Instance.SetCurrentBetLevel(this.betLevelType);
     }
     override EffectActive(value: any): void {
 
         if(Mines_GameManager.Instance.IsBetting()) return; 
         super.EffectActive(value);    
     }
+
 }

@@ -21,8 +21,4 @@ export default class Mines_GameplayUIManager extends cc.Component {
         Mines_GameplayUIManager.Instance = this;
     }
 
-    SetCurrentMoneyLabel(currentMoney : number){
-        this.currentMoneyLabel.string = "Money: " + currentMoney + " VND";
-    }
-
 }

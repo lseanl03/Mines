@@ -37,7 +37,7 @@ export default class Mines_ChooseMine extends ButtonBase {
 
     OnClick(){
         Mines_GameManager.Instance.SetCurrentMineAmount(this.mineAmount);
-        Mines_BetGroup.Instance.SetChooseMineViewLabel(Mines_GameManager.Instance.CurrentMineAmount());
+        Mines_BetGroup.Instance.GetChooseMineGroup().SetChooseMineViewLabel(Mines_GameManager.Instance.CurrentMineAmount());
     }
 
     protected start(): void {
