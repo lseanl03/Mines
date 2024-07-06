@@ -96,4 +96,7 @@ export default class Mines_DataManager extends cc.Component {
         else Mines_GameManager.Instance.SetCurrentMoney(Mines_GameManager.Instance.GetInitMoney());
     }
 
+    public GetNickName(){
+        return this.nickName;
+    }
 }

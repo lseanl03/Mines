@@ -125,14 +125,12 @@ export default class Mines_BetGroup extends cc.Component {
         if(!Mines_GameManager.Instance.MoneyEnough()) return;
 
         if(Mines_GameManager.Instance.IsBetting() && Mines_GameManager.Instance.ItemIsOpenedAmount() > 0){
-            cc.log("HandleCashOutOnClick");
             this.HandleStopOnClick();
             return;
         }
 
         if(Mines_GameManager.Instance.IsBetting()) return;
 
-        cc.log("HandleBetOnClick");
         this.HandleBetOnClick();
 
     }
@@ -178,7 +176,6 @@ export default class Mines_BetGroup extends cc.Component {
                 itemComponent.SetItemSpriteType(ItemSpriteType.Diamond);
             }
         }
-        cc.log("Done");
     }
 
 

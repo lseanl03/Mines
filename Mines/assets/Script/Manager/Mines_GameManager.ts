@@ -12,6 +12,7 @@ import ProfitCostData from "../ProfitCostData";
 import Mines_WinPanel from "../Mines_WinPanel";
 import Mines_GameplayUIManager from "./Mines_GameplayUIManager";
 import Mines_DataManager from "./Mines_DataManager";
+import Mines_PopupUIManager from "./Mines_PopupUIManager";
 
 const {ccclass, property} = cc._decorator;
 
@@ -25,6 +26,7 @@ export default class Mines_GameManager extends cc.Component {
     private maxMine : number = 15;
     private initMoney : number = 1000000;
 
+    private currentCost : number = 0;
     private currentBetLevel : number = 0; 
     private currentMoney : number = 0;
     private currentMineAmount : number = 0;
@@ -61,13 +63,14 @@ export default class Mines_GameManager extends cc.Component {
     }
     
     private GetNextCost(mineIsOpenedAmount : number){
-        var mineData = this.profitCostData.profitMineData[this.currentMineAmount];
+        let mineData = this.profitCostData.profitMineData[this.currentMineAmount];
         return mineData[mineIsOpenedAmount];
     }
     
     private GetCurrentCost(mineIsOpenedAmount : number){
-        var mineData = this.profitCostData.profitMineData[this.currentMineAmount];
-        return mineData[mineIsOpenedAmount];
+        let mineData = this.profitCostData.profitMineData[this.currentMineAmount];
+        this.currentCost = mineData[mineIsOpenedAmount];
+        return this.currentCost;
     }
     
     public IsBetting(){
@@ -123,7 +126,8 @@ export default class Mines_GameManager extends cc.Component {
             this.SetCurrentMoney(this.totalProfit);
             this.SetWinPanelState(true);
         }
-        this.ResetData();
+
+        this.HandleAfterEndGame();
     }
 
     public SetListItemEndGame(){
@@ -181,8 +185,14 @@ export default class Mines_GameManager extends cc.Component {
     
         if(state == true){
             this.winPanel.SetCostLabel(this.CurrentCost());
-            this.winPanel.SetTotalProfitLabel(this.totalProfit);
+            this.winPanel.SetTotalProfitLabel(this.GetTotalProfit());
+            this.SetCurrentMoney(this.GetTotalProfit());
         }
+    }
+
+    private GetTotalProfit(){
+        this.totalProfit = this.currentBetLevel * this.currentCost;
+        return this.totalProfit;
     }
 
 
@@ -191,6 +201,8 @@ export default class Mines_GameManager extends cc.Component {
         this.totalProfit = 0;
         this.profitOnNextTile = 0;
         this.itemIsOpenedAmount = 0;
+        this.currentCost = 0;
+        this.totalProfit = 0;
 
         this.SetBettingState(false);
     }
@@ -198,5 +210,13 @@ export default class Mines_GameManager extends cc.Component {
 
     public BetMoney(value : number){
         this.SetCurrentMoney(-value);
+    }
+
+    public HandleAfterEndGame(){
+
+        Mines_PopupUIManager.Instance.GetHistoryBetPopup().SpawnHistoryBet(this.currentCost, this.currentBetLevel);
+        Mines_PopupUIManager.Instance.GetTopBetPopup().SpawnTopBet(this.totalProfit);
+
+        this.ResetData();
     }
 }
