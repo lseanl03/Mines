@@ -21,19 +21,11 @@ export default class Mines_TopBet extends cc.Component {
     @property(cc.Label)
     private moneyWinLabel : cc.Label = null;
 
-    @property(cc.Sprite)
-    private sprite : cc.Sprite = null;
-
     private moneyWin : number = 0;
 
     public GetMoneyWin(){
         return this.moneyWin;
     }
-
-    public GetSprite(){
-        return this.sprite;
-    }
-
     public SetRankLabel(rank : number){
         this.rankLabel.string = "" + rank;
     }

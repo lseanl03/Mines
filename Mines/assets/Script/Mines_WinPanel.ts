@@ -39,6 +39,6 @@ export default class Mines_WinPanel extends cc.Component {
     }
 
     SetTotalProfitLabel(totalProfit : number){
-        this.totalProfitLabel.string = "Total Profit: " + Math.round(totalProfit) + " VND";
+        this.totalProfitLabel.string = "Total Profit: " + Math.round(totalProfit).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VND";
     }
 }

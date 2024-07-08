@@ -25,13 +25,6 @@ export default class Mines_HistoryBet extends cc.Component {
     @property(cc.Label)
     private descriptionLabel : cc.Label = null;
 
-    
-    @property(cc.Sprite)
-    private sprite : cc.Sprite = null;
-
-    public GetSprite(){
-        return this.sprite;
-    }
 
     public SetSessionLabel(session : number){
         this.sessionLabel.string = "x" + session;
@@ -42,7 +35,7 @@ export default class Mines_HistoryBet extends cc.Component {
         let hour = date.getHours();
         let minute = date.getMinutes();
 
-        this.timeLabel.string = hour + ":" + minute;
+        this.timeLabel.string = hour + ":" + minute + "\n" + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     }
 
     public SetBetLevelLabel(betLevel : number){

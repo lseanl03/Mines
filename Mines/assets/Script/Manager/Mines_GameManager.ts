@@ -27,11 +27,11 @@ export default class Mines_GameManager extends cc.Component {
     private initMoney : number = 1000000;
 
     private currentCost : number = 0;
+    private profitOnNextTile : number = 0;
     private currentBetLevel : number = 0; 
     private currentMoney : number = 0;
     private currentMineAmount : number = 0;
     private totalProfit : number = 0;
-    private profitOnNextTile : number = 0;
     private itemIsOpenedAmount : number = 0;
 
     private profitCostData : ProfitCostData = new ProfitCostData();
@@ -55,7 +55,7 @@ export default class Mines_GameManager extends cc.Component {
         return this.initMoney;
     }
 
-    private CostNextTile(){
+    public CostNextTile(){
         return this.GetNextCost(this.itemIsOpenedAmount);
     }
     private CurrentCost(){
@@ -174,10 +174,11 @@ export default class Mines_GameManager extends cc.Component {
         this.totalProfit = value;
     }
 
-    public SetProfitOnNextTile(){
+    public GetProfitOnNextTile(){
 
         let costNextTile = this.GetNextCost(this.itemIsOpenedAmount);
         this.profitOnNextTile = costNextTile * this.currentBetLevel;
+        return this.profitOnNextTile;
     }
 
     public SetWinPanelState(state : boolean){
@@ -216,6 +217,8 @@ export default class Mines_GameManager extends cc.Component {
 
         Mines_PopupUIManager.Instance.GetHistoryBetPopup().SpawnHistoryBet(this.currentCost, this.currentBetLevel);
         Mines_PopupUIManager.Instance.GetTopBetPopup().SpawnTopBet(this.totalProfit);
+
+        Mines_PlayGroup.Instance.HandleResetRound();
 
         this.ResetData();
     }

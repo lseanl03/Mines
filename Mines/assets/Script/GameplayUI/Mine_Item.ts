@@ -166,7 +166,9 @@ export default class Mines_Item extends ButtonBase {
         this.isOpened = true;
         this.SetItemSpriteState(false);
         this.PlayAnim(this.itemType == ItemSpriteType.Mine, false);
-    
+        
+        Mines_PlayGroup.Instance.HandleOnItemOpen();
+
         this.CheckInfo();
     }
 

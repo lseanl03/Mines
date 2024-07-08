@@ -18,7 +18,7 @@ export default class Mines_ToolUI extends cc.Component {
     private infoButton : cc.Button = null;
 
     @property(cc.Button)
-    private questionButton : cc.Button = null;
+    private howToPlayButton : cc.Button = null;
 
     @property(cc.Button)
     private historyButton : cc.Button = null;
@@ -26,7 +26,7 @@ export default class Mines_ToolUI extends cc.Component {
     protected onLoad(): void {
         this.topBetButton.node.on('click', this.OnTopBetButtonClick, this);
         this.infoButton.node.on('click', this.OnInfoButtonClick, this);
-        this.questionButton.node.on('click', this.OnQuestionButtonClick, this);
+        this.howToPlayButton.node.on('click', this.OnHowToPlayButtonClick, this);
         this.historyButton.node.on('click', this.OnHistoryButtonClick, this);
     }
 
@@ -37,7 +37,8 @@ export default class Mines_ToolUI extends cc.Component {
     private OnInfoButtonClick(){
     }
     
-    private OnQuestionButtonClick(){
+    private OnHowToPlayButtonClick(){
+        Mines_PopupUIManager.Instance.ShowHowToPlayPopup();
     }
     
     private OnHistoryButtonClick(){

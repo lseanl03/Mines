@@ -53,11 +53,6 @@ export default class Mines_HistoryBetPopup extends cc.Component {
         historyBetComponent.SetBetLevelLabel(betLevel);
         historyBetComponent.SetMoneyWinLabel(session * betLevel);
         
-        
-        historyBet.getSiblingIndex() % 2 == 0 ? 
-        historyBetComponent.GetSprite().spriteFrame = this.lineLight : 
-        historyBetComponent.GetSprite().spriteFrame = this.lineDark;
-        
         historyBet.setSiblingIndex(0);
     }
 

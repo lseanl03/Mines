@@ -97,27 +97,27 @@ export default class Mines_BetGroup extends cc.Component {
         return itemComponent;
     }
 
-    private GetAmountItemIsOpened(): void {
+    // private GetAmountItemIsOpened(): void {
 
-        Mines_GameManager.Instance.SetItemIsOpenedAmount(0);
+    //     Mines_GameManager.Instance.SetItemIsOpenedAmount(0);
         
-        const itemGroup = Mines_PlayGroup.Instance.ItemGroup();
+    //     const itemGroup = Mines_PlayGroup.Instance.ItemGroup();
         
-        for (let i = 0; i < itemGroup.childrenCount; i++) {
-            let item = itemGroup.children[i];
-            let itemComponent = item.getComponent(Mines_Item);
-            if (itemComponent.IsOpened()) {
-                Mines_GameManager.Instance.SetItemIsOpenedAmount(Mines_GameManager.Instance.ItemIsOpenedAmount() + 1);
-            }
-        }
+    //     for (let i = 0; i < itemGroup.childrenCount; i++) {
+    //         let item = itemGroup.children[i];
+    //         let itemComponent = item.getComponent(Mines_Item);
+    //         if (itemComponent.IsOpened()) {
+    //             Mines_GameManager.Instance.SetItemIsOpenedAmount(Mines_GameManager.Instance.ItemIsOpenedAmount() + 1);
+    //         }
+    //     }
 
-        if (Mines_GameManager.Instance.IsBetting()) {
-            Mines_GameManager.Instance.SetTotalProfit(Mines_GameManager.Instance.ItemIsOpenedAmount());
-        } else {
-            Mines_GameManager.Instance.SetTotalProfit(Mines_GameManager.Instance.CurrentBetLevel());
-        }
-        Mines_GameManager.Instance.SetProfitOnNextTile();
-    }
+    //     if (Mines_GameManager.Instance.IsBetting()) {
+    //         Mines_GameManager.Instance.SetTotalProfit(Mines_GameManager.Instance.ItemIsOpenedAmount());
+    //     } else {
+    //         Mines_GameManager.Instance.SetTotalProfit(Mines_GameManager.Instance.CurrentBetLevel());
+    //     }
+    //     Mines_GameManager.Instance.GetProfitOnNextTile();
+    // }
 
 
 

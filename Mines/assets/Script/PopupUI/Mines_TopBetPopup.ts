@@ -78,9 +78,6 @@ export default class Mines_TopBetPopup extends cc.Component {
 
             topBetComponent.SetRankLabel(i+1);
 
-            topBet.getSiblingIndex() % 2 == 0 ? 
-            topBetComponent.GetSprite().spriteFrame = this.lineLight : 
-            topBetComponent.GetSprite().spriteFrame = this.lineDark;
         }
     }
 

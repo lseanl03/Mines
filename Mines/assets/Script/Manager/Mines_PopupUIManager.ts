@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import Mines_HistoryBetPopup from "../PopupUI/Mines_HistoryBetPopup";
+import Mines_HowToPlayPopup from "../PopupUI/Mines_HowToPlayPopup";
 import Mines_TopBetPopup from "../PopupUI/Mines_TopBetPopup";
 import Mines_UserNamePopup from "../PopupUI/Mines_UserNamePopup";
 
@@ -25,11 +26,15 @@ export default class Mines_PopupUIManager extends cc.Component {
     @property(Mines_TopBetPopup)
     private topBetPopup : Mines_TopBetPopup = null;
 
+    @property(Mines_HowToPlayPopup)
+    private howToPlayPopup : Mines_HowToPlayPopup = null;
+
     onLoad(){
         Mines_PopupUIManager.Instance = this;
 
         this.historyBetPopup.GetCloseButton().node.on('click', this.OnCloseHistoryBetPopup, this);
         this.topBetPopup.GetCloseButton().node.on('click', this.OnCloseTopBetPopup, this);
+        this.howToPlayPopup.GetCloseButton().node.on('click', this.OnCloseHowToPlayPopup, this);
     }
 
     private OnCloseTopBetPopup(){
@@ -40,6 +45,9 @@ export default class Mines_PopupUIManager extends cc.Component {
         this.HidePopUp(this.historyBetPopup.GetPanel(), this.historyBetPopup.GetCloseButton(), this.historyBetPopup.node);
     }
 
+    private OnCloseHowToPlayPopup(){
+        this.HidePopUp(this.howToPlayPopup.GetPanel(), this.howToPlayPopup.GetCloseButton(), this.howToPlayPopup.node);
+    }
 
     public ShowTopBetPopup(){
         this.ShowPopUp(this.topBetPopup.GetPanel(), this.topBetPopup.GetCloseButton(), this.topBetPopup.node);
@@ -47,6 +55,10 @@ export default class Mines_PopupUIManager extends cc.Component {
 
     public ShowHistoryBetPopup(){
         this.ShowPopUp(this.historyBetPopup.GetPanel(), this.historyBetPopup.GetCloseButton(), this.historyBetPopup.node);
+    }
+
+    public ShowHowToPlayPopup(){
+        this.ShowPopUp(this.howToPlayPopup.GetPanel(), this.howToPlayPopup.GetCloseButton(), this.howToPlayPopup.node);
     }
 
 
