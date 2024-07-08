@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "f7562d12-0e7f-4172-ab79-efeee038b614",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1383,
+  "height": 752,
+  "platformSettings": {},
+  "subMetas": {
+    "demo-howtoplay-eng": {
+      "ver": "1.0.6",
+      "uuid": "ea3b5d91-1e7e-4c79-ad80-97914fd1efc0",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f7562d12-0e7f-4172-ab79-efeee038b614",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 1383,
+      "height": 752,
+      "rawWidth": 1383,
+      "rawHeight": 752,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

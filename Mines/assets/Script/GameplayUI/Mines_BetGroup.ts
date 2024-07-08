@@ -152,6 +152,8 @@ export default class Mines_BetGroup extends cc.Component {
         
         Mines_GameManager.Instance.BetMoney(Mines_GameManager.Instance.CurrentBetLevel());
         Mines_GameManager.Instance.SetBettingState(true);
+
+        Mines_PlayGroup.Instance.HandleOnBet();
     }
 
     private RandomMineToListItem(){
