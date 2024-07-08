@@ -10,13 +10,13 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Mines_WinPanel extends cc.Component {
 
-    @property(cc.Label)
-    private costLabel: cc.Label = null;
+    @property(cc.RichText)
+    private costLabel: cc.RichText = null;
 
-    @property(cc.Label)
-    private totalProfitLabel: cc.Label = null;
+    @property(cc.RichText)
+    private totalProfitLabel: cc.RichText = null;
 
-    private hideTime : number = 0.5;
+    private hideTime : number = 0.3;
 
     protected onEnable(): void {
         this.Anim();
@@ -26,7 +26,7 @@ export default class Mines_WinPanel extends cc.Component {
         this.node.opacity = 255;
 
         cc.tween(this.node)
-        .to(1, {opacity: 255})
+        .to(2, {opacity: 255})
         .to(this.hideTime, {opacity: 0})
         .call(() => {
             this.node.active = false;
@@ -35,10 +35,10 @@ export default class Mines_WinPanel extends cc.Component {
     }
 
     SetCostLabel(cost : number){
-        this.costLabel.string = "Cost: x" + cost;
+        this.costLabel.string = "Cost: <color=#29FF00> x" + cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</color>";
     }
 
     SetTotalProfitLabel(totalProfit : number){
-        this.totalProfitLabel.string = "Total Profit: " + Math.round(totalProfit).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VND";
+        this.totalProfitLabel.string = "Total Profit: <color=#FFE000>" + totalProfit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "VND</color>";
     }
 }

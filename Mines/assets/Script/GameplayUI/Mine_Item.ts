@@ -110,6 +110,7 @@ export default class Mines_Item extends ButtonBase {
     private CheckInfo(){
 
         if(this.itemType == ItemSpriteType.Mine){
+            Mines_GameManager.Instance.SetBettingState(false);
             Mines_GameManager.Instance.SetGameState(false);
         }
         Mines_GameManager.Instance.GetAmountItemIsOpened();
