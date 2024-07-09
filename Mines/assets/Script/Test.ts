@@ -1,9 +1,3 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
 
@@ -14,14 +8,19 @@ export default class NewClass extends cc.Component {
     private sprite: cc.Sprite = null;
 
     protected onLoad(): void {
-        cc.assetManager.loadBundle('AssetBundle', (err, bundle) => {
+        cc.assetManager.loadBundle('MainBundle', (err, bundle) => {
             if (err) {
                 console.error('Load Asset Bundle failed:', err);
                 return;
             }
 
-            bundle.load(`Image/coin.png`, cc.SpriteFrame, function (err, spriteFrame) {
-                console.log(spriteFrame);
+            bundle.load('Image/coin', cc.SpriteFrame, (error, spriteFrame: cc.SpriteFrame) => {
+                if (error) {
+                    console.error('Load Image failed:', error);
+                    return;
+                }
+
+                this.sprite.spriteFrame = spriteFrame;
             });
         });
     }

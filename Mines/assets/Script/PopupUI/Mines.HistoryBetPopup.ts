@@ -5,12 +5,14 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import PopupBase from "../PopupBase";
 import MinesHistoryBet from "./Mines.HistoryBet";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class MinesHistoryBetPopup extends cc.Component {
+export default class MinesHistoryBetPopup extends PopupBase {
+  
     @property(cc.SpriteFrame)
     private lineDark : cc.SpriteFrame = null;
 
@@ -20,24 +22,9 @@ export default class MinesHistoryBetPopup extends cc.Component {
     @property(cc.Node)
     private historyBetList : cc.Node = null;
 
-    @property(cc.Button)
-    private closeButton : cc.Button = null;
-
     @property(cc.Prefab)
     private historyBetPrefab : cc.Prefab = null;
 
-    @property(cc.Node)
-    private panel : cc.Node = null;
-
-
-
-    public GetCloseButton(){
-        return this.closeButton;
-    }
-
-    public GetPanel(){
-        return this.panel;
-    }
 
 
     public SpawnHistoryBet(session : number, betLevel : number){

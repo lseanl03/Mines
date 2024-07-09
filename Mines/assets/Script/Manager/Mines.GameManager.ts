@@ -1,16 +1,10 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+
 
 import MinesBetGroup from "../GameplayUI/Mines.BetGroup";
 import MinesItem from "../GameplayUI/Mine.Item";
 import MinesPlayGroup from "../GameplayUI/Mines.PlayGroup";
 import ProfitCostData from "../ProfitCostData";
 import MinesWinPanel from "../UI/Mines.WinPanel";
-import MinesGameplayUIManager from "./Mines.GameplayUIManager";
 import MinesDataManager from "./Mines.DataManager";
 import MinesPopupUIManager from "./Mines.PopupUIManager";
 
@@ -63,12 +57,12 @@ export default class MinesGameManager extends cc.Component {
     }
     
     private GetNextCost(mineIsOpenedAmount : number){
-        let mineData = this.profitCostData.profitMineData[this.currentMineAmount];
+        const mineData = this.profitCostData.profitMineData[this.currentMineAmount];
         return mineData[mineIsOpenedAmount];
     }
     
     private GetCurrentCost(mineIsOpenedAmount : number){
-        let mineData = this.profitCostData.profitMineData[this.currentMineAmount];
+        const mineData = this.profitCostData.profitMineData[this.currentMineAmount];
         this.currentCost = mineData[mineIsOpenedAmount];
         return this.currentCost;
     }
@@ -103,8 +97,8 @@ export default class MinesGameManager extends cc.Component {
         const itemGroup = MinesPlayGroup.Instance.ItemGroup();
         
         for(let i = 0; i < itemGroup.childrenCount; i++){
-            let item = itemGroup.children[i];
-            let itemComponent = item.getComponent(MinesItem);
+            const item = itemGroup.children[i];
+            const itemComponent = item.getComponent(MinesItem);
             if(itemComponent.IsOpened()) this.itemIsOpenedAmount++;
         }
     }
@@ -176,7 +170,7 @@ export default class MinesGameManager extends cc.Component {
 
     public GetProfitOnNextTile(){
 
-        let costNextTile = this.GetNextCost(this.itemIsOpenedAmount);
+        const costNextTile = this.GetNextCost(this.itemIsOpenedAmount);
         this.profitOnNextTile = costNextTile * this.currentBetLevel;
         return this.profitOnNextTile;
     }
@@ -184,7 +178,7 @@ export default class MinesGameManager extends cc.Component {
     public SetWinPanelState(state : boolean){
         this.winPanel.node.active = state;
     
-        if(state == true){
+        if(state){
             this.winPanel.SetCostLabel(this.CurrentCost());
             this.winPanel.SetTotalProfitLabel(this.GetTotalProfit());
             this.SetCurrentMoney(this.GetTotalProfit());
@@ -203,7 +197,6 @@ export default class MinesGameManager extends cc.Component {
         this.profitOnNextTile = 0;
         this.itemIsOpenedAmount = 0;
         this.currentCost = 0;
-        this.totalProfit = 0;
 
         this.SetBettingState(false);
     }
@@ -215,8 +208,10 @@ export default class MinesGameManager extends cc.Component {
 
     public HandleAfterEndGame(){
 
-        MinesPopupUIManager.Instance.GetHistoryBetPopup().SpawnHistoryBet(this.currentCost, this.currentBetLevel);
-        MinesPopupUIManager.Instance.GetTopBetPopup().SpawnTopBet(this.totalProfit);
+        const popupUIManager = MinesPopupUIManager.Instance;
+
+        popupUIManager.GetHistoryBetPopup().SpawnHistoryBet(this.currentCost, this.currentBetLevel);
+        popupUIManager.GetTopBetPopup().SpawnTopBet(this.totalProfit);
 
         MinesPlayGroup.Instance.HandleResetRound();
 

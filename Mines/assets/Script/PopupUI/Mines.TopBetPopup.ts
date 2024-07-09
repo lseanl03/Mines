@@ -5,12 +5,13 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import PopupBase from "../PopupBase";
 import MinesTopBet from "./Mines.TopBet";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class MinesTopBetPopup extends cc.Component {
+export default class MinesTopBetPopup extends PopupBase {
     @property(cc.SpriteFrame)
     private lineDark : cc.SpriteFrame = null;
 
@@ -20,24 +21,9 @@ export default class MinesTopBetPopup extends cc.Component {
     @property(cc.Node)
     private topBetList : cc.Node = null;
 
-    @property(cc.Button)
-    private closeButton : cc.Button = null;
 
     @property(cc.Prefab)
     private topBetPrefab : cc.Prefab = null;
-
-    @property(cc.Node)
-    private panel : cc.Node = null;
-
-
-
-    public GetCloseButton(){
-        return this.closeButton;
-    }
-
-    public GetPanel(){
-        return this.panel;
-    }
 
     public SpawnTopBet(moneyWin : number){
 
@@ -55,7 +41,7 @@ export default class MinesTopBetPopup extends cc.Component {
 
     }
 
-    UpdateTopBet(currentTopBet : MinesTopBet){
+    private UpdateTopBet(currentTopBet : MinesTopBet){
 
         let index = currentTopBet.node.getSiblingIndex();
 

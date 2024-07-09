@@ -27,13 +27,7 @@ export default class MinesBetButton extends ButtonBase {
     }
 
     public SetButtonSprite(isBetting: boolean){
-        if(isBetting) {
-            this.sprite.spriteFrame = this.stopSpriteFrame;
-            MinesBetGroup.Instance.SetItemSprite(true);
-        }
-        else{
-            this.sprite.spriteFrame = this.betSpriteFrame;
-            MinesBetGroup.Instance.SetItemSprite(false);
-        }
+        this.sprite.spriteFrame = isBetting ? this.stopSpriteFrame : this.betSpriteFrame;
+        MinesBetGroup.Instance.SetItemSprite(isBetting);
     }
 }

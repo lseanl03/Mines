@@ -5,22 +5,11 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import PopupBase from "../PopupBase";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class MinesHowToPlayPopup extends cc.Component {
-    
-        @property(cc.Button)
-        private closeButton : cc.Button = null;
+export default class MinesHowToPlayPopup extends PopupBase {
 
-        @property(cc.Node)
-        private panel : cc.Node = null;
-
-        public GetCloseButton(){
-            return this.closeButton;
-        }
-
-        public GetPanel(){
-            return this.panel;
-        }
 }

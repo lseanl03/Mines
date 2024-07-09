@@ -43,7 +43,8 @@ export default class MinesBetGroup extends cc.Component {
     }
 
     private Init(){
-        MinesGameManager.Instance.SetCurrentMineAmount(MinesGameManager.Instance.MinMine());
+        const gameManager = MinesGameManager.Instance;
+        gameManager.SetCurrentMineAmount(gameManager.MinMine());
     }
 
     AddListener(){
@@ -76,8 +77,8 @@ export default class MinesBetGroup extends cc.Component {
     public SetItemSprite(isShow : boolean){
         const itemGroup = MinesPlayGroup.Instance.ItemGroup();
         for(let i = 0; i < itemGroup.childrenCount; i++){
-            let item = itemGroup.children[i];
-            let itemComponent = item.getComponent(MinesItem);
+            const item = itemGroup.children[i];
+            const itemComponent = item.getComponent(MinesItem);
             itemComponent.SetAnimActive(true);
             itemComponent.SetItemSprite(isShow);
         }
@@ -88,8 +89,8 @@ export default class MinesBetGroup extends cc.Component {
         let itemComponent : MinesItem;
 
         do{
-            let itemGroup = MinesPlayGroup.Instance.ItemGroup();
-            let index = Math.round(Math.random() * (itemGroup.childrenCount - 1));
+            const itemGroup = MinesPlayGroup.Instance.ItemGroup();
+            const index = Math.round(Math.random() * (itemGroup.childrenCount - 1));
             itemComponent = itemGroup.children[index].getComponent(MinesItem);
 
         }while(itemComponent.ItemType() != ItemSpriteType.None);
@@ -97,47 +98,28 @@ export default class MinesBetGroup extends cc.Component {
         return itemComponent;
     }
 
-    // private GetAmountItemIsOpened(): void {
-
-    //     Mines_GameManager.Instance.SetItemIsOpenedAmount(0);
-        
-    //     const itemGroup = Mines_PlayGroup.Instance.ItemGroup();
-        
-    //     for (let i = 0; i < itemGroup.childrenCount; i++) {
-    //         let item = itemGroup.children[i];
-    //         let itemComponent = item.getComponent(Mines_Item);
-    //         if (itemComponent.IsOpened()) {
-    //             Mines_GameManager.Instance.SetItemIsOpenedAmount(Mines_GameManager.Instance.ItemIsOpenedAmount() + 1);
-    //         }
-    //     }
-
-    //     if (Mines_GameManager.Instance.IsBetting()) {
-    //         Mines_GameManager.Instance.SetTotalProfit(Mines_GameManager.Instance.ItemIsOpenedAmount());
-    //     } else {
-    //         Mines_GameManager.Instance.SetTotalProfit(Mines_GameManager.Instance.CurrentBetLevel());
-    //     }
-    //     Mines_GameManager.Instance.GetProfitOnNextTile();
-    // }
-
-
 
     private OnBetButtonClick(){
-        if(!MinesGameManager.Instance.MoneyEnough()) return;
+        const gameManager = MinesGameManager.Instance;
 
-        if(MinesGameManager.Instance.IsBetting() && MinesGameManager.Instance.ItemIsOpenedAmount() > 0){
+        if(!gameManager.MoneyEnough()) return;
+
+        if(gameManager.IsBetting() && gameManager.ItemIsOpenedAmount() > 0){
             this.HandleStopOnClick();
             return;
         }
 
-        if(MinesGameManager.Instance.IsBetting()) return;
+        if(gameManager.IsBetting()) return;
 
         this.HandleBetOnClick();
 
     }
 
     private HandleStopOnClick(){
-        MinesGameManager.Instance.SetBettingState(false);
-        MinesGameManager.Instance.SetGameState(true);
+        const gameManager = MinesGameManager.Instance;
+
+        gameManager.SetBettingState(false);
+        gameManager.SetGameState(true);
 
     }
 
@@ -147,11 +129,12 @@ export default class MinesBetGroup extends cc.Component {
         this.RandomMineToListItem();
         this.RandomListItem();
         
+        const gameManager = MinesGameManager.Instance;
         
-        MinesGameManager.Instance.GetAmountItemIsOpened();
+        gameManager.GetAmountItemIsOpened();
         
-        MinesGameManager.Instance.BetMoney(MinesGameManager.Instance.CurrentBetLevel());
-        MinesGameManager.Instance.SetBettingState(true);
+        gameManager.BetMoney(gameManager.CurrentBetLevel());
+        gameManager.SetBettingState(true);
 
         MinesPlayGroup.Instance.HandleOnBet();
     }
@@ -162,7 +145,7 @@ export default class MinesBetGroup extends cc.Component {
         const currentMineAmount = MinesGameManager.Instance.CurrentMineAmount();
         
         for(let i = 0; i < currentMineAmount; i++){
-            let itemComponentNone = this.GetRandomItemNone();
+            const itemComponentNone = this.GetRandomItemNone();
             itemComponentNone.SetItemSpriteType(ItemSpriteType.Mine);
         }
     }
@@ -171,8 +154,8 @@ export default class MinesBetGroup extends cc.Component {
 
         const itemGroup = MinesPlayGroup.Instance.ItemGroup();
         for(let i = 0; i < itemGroup.childrenCount; i++){
-            let item = itemGroup.children[i];
-            let itemComponent = item.getComponent(MinesItem);
+            const item = itemGroup.children[i];
+            const itemComponent = item.getComponent(MinesItem);
             
             if(itemComponent.ItemType() == ItemSpriteType.None){
                 itemComponent.SetItemSpriteType(ItemSpriteType.Diamond);
@@ -185,8 +168,8 @@ export default class MinesBetGroup extends cc.Component {
     private ResetListItem(){
         const itemGroup = MinesPlayGroup.Instance.ItemGroup();
         for(let i = 0; i < itemGroup.childrenCount; i++){
-            let item = itemGroup.children[i];
-            let itemComponent = item.getComponent(MinesItem);
+            const item = itemGroup.children[i];
+            const itemComponent = item.getComponent(MinesItem);
             itemComponent.SetItemSpriteType(ItemSpriteType.None);
             itemComponent.SetItemSpriteState(false);
         }

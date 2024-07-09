@@ -54,8 +54,6 @@ export default class MinesItem extends ButtonBase {
     private Init(){
         this.SetItemSprite(false);
         this.SetItemSpriteType(ItemSpriteType.None);
-
-
     }
 
     //Get Set
@@ -109,19 +107,24 @@ export default class MinesItem extends ButtonBase {
 
     private CheckInfo(){
 
+        const gameManager = MinesGameManager.Instance;
+
         if(this.itemType == ItemSpriteType.Mine){
-            MinesGameManager.Instance.SetBettingState(false);
-            MinesGameManager.Instance.SetGameState(false);
+            gameManager.SetBettingState(false);
+            gameManager.SetGameState(false);
         }
-        MinesGameManager.Instance.GetAmountItemIsOpened();
+        gameManager.GetAmountItemIsOpened();
     }
     private onAnimationComplete(trackEntry, loopCount) {
+
+        const PlayGroup = MinesPlayGroup.Instance;
+
         if (this.itemType == ItemSpriteType.Mine && this.isMineClicked) {
 
             this.SetAnimActive(false);
 
-            MinesPlayGroup.Instance.AnimBomb().node.position = this.node.position;
-            MinesPlayGroup.Instance.AnimBomb().setAnimation(0, '5', false);
+            PlayGroup.AnimBomb().node.position = this.node.position;
+            PlayGroup.AnimBomb().setAnimation(0, '5', false);
         }
         else if(this.itemType == ItemSpriteType.Diamond){
             this.anim.setAnimation(0, '8', true);

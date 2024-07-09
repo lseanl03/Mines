@@ -43,13 +43,17 @@ export default class MinesChooseMineGroup extends cc.Component {
     }
 
     private OnSubButtonClick(){
-        MinesGameManager.Instance.SetCurrentMineAmount(MinesGameManager.Instance.CurrentMineAmount() - 1);
-        this.SetChooseMineViewLabel(MinesGameManager.Instance.CurrentMineAmount());
+        const gameManager = MinesGameManager.Instance;
+
+        gameManager.SetCurrentMineAmount(gameManager.CurrentMineAmount() - 1);
+        this.SetChooseMineViewLabel(gameManager.CurrentMineAmount());
     }
 
     private OnSumButtonClick(){
-        MinesGameManager.Instance.SetCurrentMineAmount(MinesGameManager.Instance.CurrentMineAmount() + 1);
-        this.SetChooseMineViewLabel(MinesGameManager.Instance.CurrentMineAmount());
+        const gameManager = MinesGameManager.Instance;
+
+        gameManager.SetCurrentMineAmount(gameManager.CurrentMineAmount() + 1);
+        this.SetChooseMineViewLabel(gameManager.CurrentMineAmount());
     }
 
     public SetChooseMineViewLabel(value : number){
@@ -57,18 +61,12 @@ export default class MinesChooseMineGroup extends cc.Component {
     }
 
     public SetButtonState(state : boolean){
-        this.sumButton.interactable = state;
-        this.subButton.interactable = state;
+        this.subButton.interactable = this.sumButton.interactable = state;
     }
 
     public CheckChooseMineGroup(value){
         for(let i = 0; i < this.chooseMineList.length; i++){
-            if(this.chooseMineList[i].mineAmount == value){
-                this.chooseMineList[i].SetMineBorderSpriteState(true);
-            }
-            else{
-                this.chooseMineList[i].SetMineBorderSpriteState(false);
-            }
+            this.chooseMineList[i].SetMineBorderSpriteState(this.chooseMineList[i].mineAmount == value ? true : false);
         }
     }
 }

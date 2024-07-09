@@ -22464,6 +22464,12 @@
       "__id__": 449
     },
     "_enabled": true,
+    "closeButton": {
+      "__id__": 505
+    },
+    "panel": {
+      "__id__": 453
+    },
     "lineDark": {
       "__uuid__": "69997305-257c-41a8-bc71-bbfdf6e7a5c4"
     },
@@ -22473,14 +22479,8 @@
     "historyBetList": {
       "__id__": 500
     },
-    "closeButton": {
-      "__id__": 505
-    },
     "historyBetPrefab": {
       "__uuid__": "1f4d2bc9-e1eb-48f2-9f8e-4fc8142f02df"
-    },
-    "panel": {
-      "__id__": 453
     },
     "_id": "caibVFhF5Mx42swBL9A9oM"
   },
@@ -25134,6 +25134,12 @@
       "__id__": 509
     },
     "_enabled": true,
+    "closeButton": {
+      "__id__": 561
+    },
+    "panel": {
+      "__id__": 513
+    },
     "lineDark": {
       "__uuid__": "69997305-257c-41a8-bc71-bbfdf6e7a5c4"
     },
@@ -25143,14 +25149,8 @@
     "topBetList": {
       "__id__": 556
     },
-    "closeButton": {
-      "__id__": 561
-    },
     "topBetPrefab": {
       "__uuid__": "5015f8c0-b5b3-4110-964d-118112c78883"
-    },
-    "panel": {
-      "__id__": 513
     },
     "_id": "35IY+RRIZJoZ3wlaeKWV9L"
   },

@@ -54,12 +54,14 @@ export default class MinesDataManager extends cc.Component {
 
     public SetUserNameData(userName : string){
 
+        const popupUIManager = MinesPopupUIManager.Instance;
+
         this.nickName = userName;
 
         this.SaveLocalData(this.nicknameKey, this.nickName);
 
-        MinesPopupUIManager.Instance.GetUserNamePopup().ShowCompletePopup();
-        MinesPopupUIManager.Instance.GetUserNamePopup().SetUserNameViewLabel(this.nickName);
+        popupUIManager.GetUserNamePopup().ShowCompletePopup();
+        popupUIManager.GetUserNamePopup().SetUserNameViewLabel(this.nickName);
 
         MinesBetGroup.Instance.GetInfoGroup().SetUserNameLabel(this.nickName);
     }
@@ -70,14 +72,11 @@ export default class MinesDataManager extends cc.Component {
         cc.log("Get Mines_nickname " + nicknameLocal);
 
 
-        if(nicknameLocal != null){
+        if(nicknameLocal){
             this.nickName = nicknameLocal;
             MinesBetGroup.Instance.GetInfoGroup().SetUserNameLabel(this.nickName);
         }
-        else
-        {
-            MinesPopupUIManager.Instance.GetUserNamePopup().ShowCreatePopup();
-        }
+        else MinesPopupUIManager.Instance.GetUserNamePopup().ShowCreatePopup();
     }
 
 
@@ -88,12 +87,12 @@ export default class MinesDataManager extends cc.Component {
     }
 
     private GetMoneyData(){
-        let money = this.LoadLocalData(this.moneyKey);
+        const money = this.LoadLocalData(this.moneyKey);
+        const gameManager = MinesGameManager.Instance;
+
+        gameManager.SetCurrentMoney(money ?? gameManager.GetInitMoney());
 
         cc.log("money " + money);
-
-        if(money != null) MinesGameManager.Instance.SetCurrentMoney(money);
-        else MinesGameManager.Instance.SetCurrentMoney(MinesGameManager.Instance.GetInitMoney());
     }
 
     public GetNickName(){

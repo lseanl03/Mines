@@ -65,15 +65,19 @@ export default class MinesPlayGroup extends cc.Component {
     }
 
     public HandleOnBet(){
-        this.SetDiamondsFoundLabel(MinesGameManager.Instance.ItemIsOpenedAmount(), 25 - MinesGameManager.Instance.CurrentMineAmount());
-        this.SetMultiplierLabel(MinesGameManager.Instance.CostNextTile());
-        this.SetFlipAgainLabel(MinesGameManager.Instance.GetProfitOnNextTile());
+        const gameManager = MinesGameManager.Instance;
+
+        this.SetDiamondsFoundLabel(gameManager.ItemIsOpenedAmount(), 25 - gameManager.CurrentMineAmount());
+        this.SetMultiplierLabel(gameManager.CostNextTile());
+        this.SetFlipAgainLabel(gameManager.GetProfitOnNextTile());
     }
 
     public HandleOnItemOpen(){
-        this.SetDiamondsFoundLabel(MinesGameManager.Instance.ItemIsOpenedAmount(), 25 - MinesGameManager.Instance.CurrentMineAmount());
-        this.SetMultiplierLabel(MinesGameManager.Instance.CostNextTile());
-        this.SetFlipAgainLabel(MinesGameManager.Instance.GetProfitOnNextTile());
+        const gameManager = MinesGameManager.Instance;
+
+        this.SetDiamondsFoundLabel(gameManager.ItemIsOpenedAmount(), 25 - gameManager.CurrentMineAmount());
+        this.SetMultiplierLabel(gameManager.CostNextTile());
+        this.SetFlipAgainLabel(gameManager.GetProfitOnNextTile());
     }
 
     public HandleResetRound(){
