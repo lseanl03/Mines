@@ -28,16 +28,14 @@ export default class MinesDataManager extends cc.Component {
         MinesDataManager.instance = this;
 
         this.Init();
-
     }
+
 
     private Init(){
         // this.RemoveLocalData(this.nicknameKey);
         // this.RemoveLocalData(this.moneyKey);
-
-        this.GetUserNameData();
-        this.GetMoneyData();
     }
+
 
     private SaveLocalData(key: string, value: any) {
         cc.sys.localStorage.setItem(key, JSON.stringify(value));
@@ -66,7 +64,7 @@ export default class MinesDataManager extends cc.Component {
         MinesBetGroup.Instance.GetInfoGroup().SetUserNameLabel(this.nickName);
     }
 
-    private GetUserNameData(){
+    public GetUserNameData(){
         let nicknameLocal = this.LoadLocalData(this.nicknameKey);
 
         cc.log("Get Mines_nickname " + nicknameLocal);
@@ -76,7 +74,7 @@ export default class MinesDataManager extends cc.Component {
             this.nickName = nicknameLocal;
             MinesBetGroup.Instance.GetInfoGroup().SetUserNameLabel(this.nickName);
         }
-        else MinesPopupUIManager.Instance.GetUserNamePopup().ShowCreatePopup();
+        else MinesPopupUIManager.Instance.ShowUserNamePopup();
     }
 
 
@@ -86,7 +84,7 @@ export default class MinesDataManager extends cc.Component {
         this.SaveLocalData(this.moneyKey, money);
     }
 
-    private GetMoneyData(){
+    public GetMoneyData(){
         const money = this.LoadLocalData(this.moneyKey);
         const gameManager = MinesGameManager.Instance;
 

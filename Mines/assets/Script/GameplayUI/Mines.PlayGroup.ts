@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import MinesAssetBundle from "../Manager/Mines.AssetBundle";
 import MinesGameManager from "../Manager/Mines.GameManager";
 
 const {ccclass, property} = cc._decorator;
@@ -33,7 +34,6 @@ export default class MinesPlayGroup extends cc.Component {
         
         this.HandleResetRound();
     }
-
 
     //Get Set
 
@@ -85,6 +85,5 @@ export default class MinesPlayGroup extends cc.Component {
         this.SetFlipAgainLabel(0);
         this.SetMultiplierLabel(0);
     }
-
 
 }

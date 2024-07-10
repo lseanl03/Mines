@@ -17,7 +17,7 @@ export default class MinesGameManager extends cc.Component {
     private minBetLevel : number = 5000;
     private maxBetLevel : number = 5000000;
     private minMine : number = 1;
-    private maxMine : number = 15;
+    private maxMine : number = 24;
     private initMoney : number = 1000000;
 
     private currentCost : number = 0;
