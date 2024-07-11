@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import MinesAudioManager from "./Manager/Mines.AudioManager";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -26,6 +28,8 @@ export default class PopupBase extends cc.Component {
 
 
     public ShowPopUp(){
+        MinesAudioManager.Instance.PlaySFX("Audio/OnClickItem");
+
         this.panel.active = this.node.active = true;
         this.panel.opacity = 0;
         this.panel.position = cc.v3(0,300,0);
@@ -40,6 +44,8 @@ export default class PopupBase extends cc.Component {
     }
 
     protected HidePopUp(){
+        MinesAudioManager.Instance.PlaySFX("Audio/OnClickItem");
+
         this.panel.opacity = 255;
         this.panel.position = cc.v3(0,0,0);
         this.closeButton.interactable = false;

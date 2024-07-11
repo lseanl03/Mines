@@ -16,8 +16,6 @@ export default class MinesWinPanel extends cc.Component {
     @property(cc.RichText)
     private totalProfitLabel: cc.RichText = null;
 
-    private hideTime : number = 0.3;
-
     protected onEnable(): void {
         this.Anim();
     }
@@ -27,7 +25,7 @@ export default class MinesWinPanel extends cc.Component {
 
         cc.tween(this.node)
         .to(2, {opacity: 255})
-        .to(this.hideTime, {opacity: 0})
+        .to(0.3, {opacity: 0})
         .call(() => {
             this.node.active = false;
         })

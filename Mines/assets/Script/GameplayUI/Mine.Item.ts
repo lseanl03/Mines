@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import ButtonBase from "../ButtonBase";
+import MinesAudioManager from "../Manager/Mines.AudioManager";
 import MinesGameManager from "../Manager/Mines.GameManager";
 import MinesPlayGroup from "./Mines.PlayGroup";
 
@@ -125,6 +126,8 @@ export default class MinesItem extends ButtonBase {
 
             PlayGroup.AnimBomb().node.position = this.node.position;
             PlayGroup.AnimBomb().setAnimation(0, '5', false);
+
+            MinesAudioManager.Instance.PlaySFX("Audio/Bomb");
         }
         else if(this.itemType == ItemSpriteType.Diamond){
             this.anim.setAnimation(0, '8', true);
@@ -155,6 +158,7 @@ export default class MinesItem extends ButtonBase {
 
     OnClick() {
 
+        
         if(!MinesGameManager.Instance.IsBetting()) return;
 
         if(this.itemType == ItemSpriteType.Mine){
@@ -166,6 +170,8 @@ export default class MinesItem extends ButtonBase {
 
     OnOpenItem(){
         if(this.isOpened || !MinesGameManager.Instance.IsBetting()) return;
+
+        MinesAudioManager.Instance.PlaySFX("Audio/OnClickItem");
 
         this.isOpened = true;
         this.SetItemSpriteState(false);

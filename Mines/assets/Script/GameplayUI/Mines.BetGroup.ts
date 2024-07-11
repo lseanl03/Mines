@@ -13,6 +13,8 @@ import MinesPlayGroup from "./Mines.PlayGroup";
 import MinesInfoGroup from "./Mines.InfoGroup";
 import MinesChooseMineGroup from "./Mines.ChooseMineGroup";
 import MinesChooseBetGroup from "./Mines.ChooseBetGroup";
+import MinesAudioManager from "../Manager/Mines.AudioManager";
+import MinesConfig from "../Mines.Config";
 
 const {ccclass, property} = cc._decorator;
 
@@ -44,7 +46,7 @@ export default class MinesBetGroup extends cc.Component {
 
     private Init(){
         const gameManager = MinesGameManager.Instance;
-        gameManager.SetCurrentMineAmount(gameManager.MinMine());
+        gameManager.SetCurrentMineAmount(MinesConfig.minMine);
     }
 
     AddListener(){
@@ -101,6 +103,8 @@ export default class MinesBetGroup extends cc.Component {
 
     private OnBetButtonClick(){
         const gameManager = MinesGameManager.Instance;
+
+        MinesAudioManager.Instance.PlaySFX("Audio/OnClick");
 
         if(!gameManager.MoneyEnough()) return;
 

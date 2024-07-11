@@ -6,6 +6,8 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import MinesPlayGroup from "../GameplayUI/Mines.PlayGroup";
+import MinesConfig from "../Mines.Config";
+import MinesAudioManager from "./Mines.AudioManager";
 import MinesDataManager from "./Mines.DataManager";
 
 const {ccclass, property} = cc._decorator;
@@ -13,7 +15,6 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class MinesAssetBundle extends cc.Component {
     
-    private bundleName : string = 'MainBundle';
 
     public bundle: cc.AssetManager.Bundle = null;
 
@@ -22,20 +23,27 @@ export default class MinesAssetBundle extends cc.Component {
     protected onLoad(): void {
         MinesAssetBundle.Instance = this;
 
-        const dataManager = MinesDataManager.instance;
-
-        cc.assetManager.loadBundle(this.bundleName, (err, bundle) => {
+        cc.assetManager.loadBundle(MinesConfig.bundleName, (err, bundle) => {
             if (err) {
                 console.error('Load Asset Bundle failed:', err);
                 return;
             }
             this.bundle = bundle;
 
-    
-            this.SpawnItemInit();
-            dataManager.GetUserNameData();
-            dataManager.GetMoneyData();
+            this.Init();
+
         });
+    }
+
+    private Init(){
+        const dataManager = MinesDataManager.instance;
+        const audioManager = MinesAudioManager.Instance;
+
+
+        this.SpawnItemInit();
+        dataManager.GetUserNameData();
+        dataManager.GetMoneyData();
+        audioManager.PlayTheme('Audio/Theme');
     }
 
     public SpawnItemInit(){

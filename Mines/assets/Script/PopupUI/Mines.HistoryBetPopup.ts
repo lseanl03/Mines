@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import MinesConfig from "../Mines.Config";
 import PopupBase from "../PopupBase";
 import MinesHistoryBet from "./Mines.HistoryBet";
 
@@ -44,7 +45,7 @@ export default class MinesHistoryBetPopup extends PopupBase {
     }
 
     private CheckHistoryBetList(){
-        if(this.historyBetList.childrenCount >= 7){
+        if(this.historyBetList.childrenCount >= MinesConfig.maxRow){
             this.historyBetList.children[this.historyBetList.childrenCount -1].destroy();
         }
     }

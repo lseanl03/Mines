@@ -7,6 +7,7 @@
 
 import MinesAssetBundle from "../Manager/Mines.AssetBundle";
 import MinesGameManager from "../Manager/Mines.GameManager";
+import MinesConfig from "../Mines.Config";
 
 const {ccclass, property} = cc._decorator;
 
@@ -67,7 +68,7 @@ export default class MinesPlayGroup extends cc.Component {
     public HandleOnBet(){
         const gameManager = MinesGameManager.Instance;
 
-        this.SetDiamondsFoundLabel(gameManager.ItemIsOpenedAmount(), 25 - gameManager.CurrentMineAmount());
+        this.SetDiamondsFoundLabel(gameManager.ItemIsOpenedAmount(), MinesConfig.maxItem - gameManager.CurrentMineAmount());
         this.SetMultiplierLabel(gameManager.CostNextTile());
         this.SetFlipAgainLabel(gameManager.GetProfitOnNextTile());
     }
@@ -75,7 +76,7 @@ export default class MinesPlayGroup extends cc.Component {
     public HandleOnItemOpen(){
         const gameManager = MinesGameManager.Instance;
 
-        this.SetDiamondsFoundLabel(gameManager.ItemIsOpenedAmount(), 25 - gameManager.CurrentMineAmount());
+        this.SetDiamondsFoundLabel(gameManager.ItemIsOpenedAmount(), MinesConfig.maxItem - gameManager.CurrentMineAmount());
         this.SetMultiplierLabel(gameManager.CostNextTile());
         this.SetFlipAgainLabel(gameManager.GetProfitOnNextTile());
     }

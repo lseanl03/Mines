@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import ButtonBase from "../ButtonBase";
+import MinesAudioManager from "../Manager/Mines.AudioManager";
 import MinesGameManager from "../Manager/Mines.GameManager";
 import MinesBetGroup from "./Mines.BetGroup";
 
@@ -35,6 +36,9 @@ export default class MinesChooseBet extends ButtonBase {
 
     private OnClick(){
         if(MinesGameManager.Instance.IsBetting()) return; 
+
+        MinesAudioManager.Instance.PlaySFX("Audio/OnClick");
+
         MinesGameManager.Instance.SetCurrentBetLevel(this.betLevelType);
     }
     override EffectActive(value: any): void {

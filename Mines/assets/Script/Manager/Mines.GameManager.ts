@@ -7,18 +7,14 @@ import ProfitCostData from "../ProfitCostData";
 import MinesWinPanel from "../UI/Mines.WinPanel";
 import MinesDataManager from "./Mines.DataManager";
 import MinesPopupUIManager from "./Mines.PopupUIManager";
+import MinesConfig from "../Mines.Config";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class MinesGameManager extends cc.Component {
- 
+    
     private isBetting : boolean = false;
-    private minBetLevel : number = 5000;
-    private maxBetLevel : number = 5000000;
-    private minMine : number = 1;
-    private maxMine : number = 24;
-    private initMoney : number = 1000000;
 
     private currentCost : number = 0;
     private profitOnNextTile : number = 0;
@@ -40,15 +36,10 @@ export default class MinesGameManager extends cc.Component {
         this.Init();
     }
     Init(){
-        this.SetCurrentBetLevel(this.minBetLevel);
+        this.SetCurrentBetLevel(MinesConfig.minBetLevel);
     }
 
     //Get Set
-
-    public GetInitMoney(){
-        return this.initMoney;
-    }
-
     public CostNextTile(){
         return this.GetNextCost(this.itemIsOpenedAmount);
     }
@@ -79,9 +70,6 @@ export default class MinesGameManager extends cc.Component {
         return this.currentMineAmount;
     }
 
-    public MinMine(){
-        return this.minMine;
-    }
     public ItemIsOpenedAmount(){
         return this.itemIsOpenedAmount;
     }
@@ -138,7 +126,7 @@ export default class MinesGameManager extends cc.Component {
         return this.currentMoney >= this.currentBetLevel;
     }
     public SetCurrentMineAmount(value : number){
-        if(value < this.minMine || value > this.maxMine || this.isBetting) return;
+        if(value < MinesConfig.minMine || value > MinesConfig.maxMine || this.isBetting) return;
 
         this.currentMineAmount = value;
         MinesBetGroup.Instance.GetChooseMineGroup().CheckChooseMineGroup(this.currentMineAmount);
@@ -147,7 +135,8 @@ export default class MinesGameManager extends cc.Component {
     public SetBettingState(state : boolean){
         this.isBetting = state;
         MinesBetGroup.Instance.BetButton().SetButtonSprite(this.isBetting);
-        MinesBetGroup.Instance.BetButtonState(true);
+
+        if(!this.isBetting) MinesBetGroup.Instance.BetButtonState(true);
 
     }
 
@@ -156,8 +145,8 @@ export default class MinesGameManager extends cc.Component {
 
         this.currentBetLevel = value;
 
-        if(this.currentBetLevel < this.minBetLevel) this.currentBetLevel = this.minBetLevel;
-        if(this.currentBetLevel > this.maxBetLevel) this.currentBetLevel = this.maxBetLevel;
+        if(this.currentBetLevel < MinesConfig.minBetLevel) this.currentBetLevel = MinesConfig.minBetLevel;
+        if(this.currentBetLevel > MinesConfig.maxBetLevel) this.currentBetLevel = MinesConfig.maxBetLevel;
 
         
         MinesBetGroup.Instance.GetChooseBetGroup().SetBetLevelLabel(this.currentBetLevel);

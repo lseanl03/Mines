@@ -20,16 +20,14 @@ export default class MinesPopupUIManager extends cc.Component {
 
     private userNamePopupPath : string = 'Prefab/UserNamePopup';
 
-    private historyBetPopupPath : string = 'Prefab/HistoryBetPopup';
-
-    private topBetPopupPath : string = 'Prefab/TopBetPopup';
-
     private howToPlayPopupPath : string = 'Prefab/HowToPlayPopup';
 
     private userNamePopup : MinesUserNamePopup = null;
 
+    @property(MinesHistoryBetPopup)
     private historyBetPopup : MinesHistoryBetPopup = null;
 
+    @property(MinesTopBetPopup)
     private topBetPopup : MinesTopBetPopup = null;
 
     private howToPlayPopup : MinesHowToPlayPopup = null;
@@ -39,31 +37,11 @@ export default class MinesPopupUIManager extends cc.Component {
     }
 
     public ShowTopBetPopup(){
-
-        if(!this.topBetPopup){
-
-            MinesAssetBundle.Instance.bundle.load(this.topBetPopupPath, cc.Prefab, (error, prefab: cc.Prefab) => {
-                const popup = cc.instantiate(prefab);
-                popup.parent = this.node;
-                this.topBetPopup = popup.getComponent(MinesTopBetPopup);
-                this.topBetPopup.ShowPopUp();
-            });
-            return;
-        }
         this.topBetPopup.ShowPopUp();
 
     }
 
     public ShowHistoryBetPopup(){
-        if(!this.historyBetPopup){
-            MinesAssetBundle.Instance.bundle.load(this.historyBetPopupPath, cc.Prefab, (error, prefab: cc.Prefab) => {
-                const popup = cc.instantiate(prefab);
-                popup.parent = this.node;
-                this.historyBetPopup = popup.getComponent(MinesHistoryBetPopup);
-                this.historyBetPopup.ShowPopUp();
-            });
-            return;
-        }
         this.historyBetPopup.ShowPopUp();
     }
 

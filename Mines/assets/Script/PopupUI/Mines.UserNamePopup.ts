@@ -6,14 +6,12 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import MinesDataManager from "../Manager/Mines.DataManager";
+import MinesConfig from "../Mines.Config";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class MinesUserNamePopup extends cc.Component {
-    
-    private minLength: number = 3;
-    private maxLength: number = 17; 
 
     @property(cc.Node)
     private createPopup : cc.Node = null;
@@ -68,7 +66,7 @@ export default class MinesUserNamePopup extends cc.Component {
     }
 
     private Init(){
-        this.usernameEditBox.maxLength = this.maxLength;
+        this.usernameEditBox.maxLength = MinesConfig.maxBetLevel;
     }
 
     private OnContinueButtonClick(){
@@ -91,7 +89,7 @@ export default class MinesUserNamePopup extends cc.Component {
     private TextValid(){
         const text = this.usernameEditBox.string.trim(); 
         
-        if (text.length >= this.minLength && text.length <= this.maxLength) {
+        if (text.length >= MinesConfig.minMine && text.length <= MinesConfig.maxMine) {
             return true;
         } 
         return false;

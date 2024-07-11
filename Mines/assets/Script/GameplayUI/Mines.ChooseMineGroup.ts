@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import MinesAudioManager from "../Manager/Mines.AudioManager";
 import MinesGameManager from "../Manager/Mines.GameManager";
 import MinesChooseMine from "./Mines.ChooseMine";
 
@@ -45,12 +46,17 @@ export default class MinesChooseMineGroup extends cc.Component {
     private OnSubButtonClick(){
         const gameManager = MinesGameManager.Instance;
 
+        MinesAudioManager.Instance.PlaySFX("Audio/OnClickItem");
+
         gameManager.SetCurrentMineAmount(gameManager.CurrentMineAmount() - 1);
         this.SetChooseMineViewLabel(gameManager.CurrentMineAmount());
     }
 
     private OnSumButtonClick(){
         const gameManager = MinesGameManager.Instance;
+        
+        MinesAudioManager.Instance.PlaySFX("Audio/OnClickItem");
+
 
         gameManager.SetCurrentMineAmount(gameManager.CurrentMineAmount() + 1);
         this.SetChooseMineViewLabel(gameManager.CurrentMineAmount());

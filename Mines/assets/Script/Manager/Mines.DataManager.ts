@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import MinesBetGroup from "../GameplayUI/Mines.BetGroup";
+import MinesConfig from "../Mines.Config";
 import MinesGameManager from "./Mines.GameManager";
 import MinesPopupUIManager from "./Mines.PopupUIManager";
 
@@ -32,8 +33,8 @@ export default class MinesDataManager extends cc.Component {
 
 
     private Init(){
-        // this.RemoveLocalData(this.nicknameKey);
-        // this.RemoveLocalData(this.moneyKey);
+        this.RemoveLocalData(this.nicknameKey);
+        this.RemoveLocalData(this.moneyKey);
     }
 
 
@@ -88,7 +89,7 @@ export default class MinesDataManager extends cc.Component {
         const money = this.LoadLocalData(this.moneyKey);
         const gameManager = MinesGameManager.Instance;
 
-        gameManager.SetCurrentMoney(money ?? gameManager.GetInitMoney());
+        gameManager.SetCurrentMoney(money ?? MinesConfig.initMoney);
 
         cc.log("money " + money);
     }
